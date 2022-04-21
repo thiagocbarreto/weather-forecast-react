@@ -8,7 +8,17 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
+    background-color: ${(props) => props.theme.colors.white};
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
     background-color: ${(props) => props.theme.colors.white};
   }
 
@@ -21,5 +31,9 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  ul {
+    list-style-type: none;
   }
 `;
