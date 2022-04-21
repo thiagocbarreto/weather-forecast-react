@@ -27,9 +27,11 @@ function Home() {
   const [weatherForecast, setWeatherForecast] = useState<
     WeatherForecast[] | null
   >(dummyWeatherForecast);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const handleSearchSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
+    setIsFirstRender(false);
 
     if (searchAddress.length > 0) {
       setIsLoading(true);
@@ -89,6 +91,8 @@ function Home() {
       {isLoading && <LoadingMessage>Loading search...</LoadingMessage>}
 
       {errorResponse.length + 1 && <ErrorMessage>{errorResponse}</ErrorMessage>}
+
+      {isFirstRender && <EmptyMessage>Result Example</EmptyMessage>}
 
       {!isLoading &&
         !errorResponse.length &&
