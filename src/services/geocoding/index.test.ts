@@ -27,7 +27,7 @@ describe('getOneLineAddressSearchPath', () => {
 });
 
 describe('Geocoding Service', () => {
-  test('should be alive', async () => {
+  it('should be alive', async () => {
     const response = await geocodingService.get(
       getOneLineAddressSearchPath(validAddress),
     );
@@ -35,7 +35,7 @@ describe('Geocoding Service', () => {
     expect(response.status).toBe(200);
   });
 
-  test('should return valid coordinates', async () => {
+  it('should return valid coordinates', async () => {
     const response = await geocodingService.get(
       getOneLineAddressSearchPath(validAddress),
     );
@@ -48,7 +48,7 @@ describe('Geocoding Service', () => {
     expect(typeof coordinates.y).toBe('number');
   });
 
-  test('should return invalid coordinates', async () => {
+  it('should return invalid coordinates', async () => {
     const response = await geocodingService.get(
       getOneLineAddressSearchPath(invalidAddress),
     );
@@ -60,14 +60,14 @@ describe('Geocoding Service', () => {
 });
 
 describe('getAddressGeoCoordinates', () => {
-  test('should return valid coordinates', async () => {
+  it('should return valid coordinates', async () => {
     const coordinates = await getAddressGeoCoordinates(validAddress);
 
     expect(typeof coordinates?.longitude).toBe('number');
     expect(typeof coordinates?.latitude).toBe('number');
   });
 
-  test('should return invalid coordinates', async () => {
+  it('should return invalid coordinates', async () => {
     const coordinates = await getAddressGeoCoordinates(invalidAddress);
 
     expect(coordinates).toBe(null);
