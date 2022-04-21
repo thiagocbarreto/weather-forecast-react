@@ -2,6 +2,7 @@
 
 Returns a 7-day weather forecast at a given address.
 
-## API's used
+## Services used
 
 * [Geolocation](https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.pdf)
+* [Weather Forecast](https://www.weather.gov/documentation/services-web-api)
