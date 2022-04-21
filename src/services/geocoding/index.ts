@@ -16,7 +16,7 @@ type GetAddressCoordinatesResponse = {
   latitude: number;
 } | null;
 
-export const getAddressCoordinates = async (
+export const getAddressGeoCoordinates = async (
   address: string,
 ): Promise<GetAddressCoordinatesResponse> => {
   const response = await geocodingService.get(
@@ -25,5 +25,12 @@ export const getAddressCoordinates = async (
 
   const { addressMatches } = response.data.result;
 
-  return addressMatches.length ? addressMatches[0].coordinates : null;
+  const firstMatch = addressMatches[0];
+
+  return firstMatch
+    ? {
+        longitude: firstMatch.coordinates.x,
+        latitude: firstMatch.coordinates.y,
+      }
+    : null;
 };

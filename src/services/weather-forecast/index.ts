@@ -26,7 +26,7 @@ type WeatherForecast = {
   icon: string;
   shortForecast: string;
   detailedForecast: string;
-};
+}[];
 
 export const getGeoCoordinatesWeatherForecast = async ({
   latitude,
@@ -41,7 +41,7 @@ export const getGeoCoordinatesWeatherForecast = async ({
 
   const { forecast } = coordinatesResponse.data.properties;
 
-  const forecastUrlResponse = await weatherForecastService.get(forecast);
+  const forecastUrlResponse = await axios.get(forecast);
 
   const { periods } = forecastUrlResponse.data.properties;
 

@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { weatherForecastService, getPointsWeatherForecastPath } from '.';
+import {
+  weatherForecastService,
+  getPointsWeatherForecastPath,
+  getGeoCoordinatesWeatherForecast,
+} from '.';
 
 describe('Weather Forecast Service', () => {
   it('should be alive', async () => {
@@ -22,19 +26,11 @@ describe('Weather Forecast Service', () => {
   });
 
   it('should return valid weather forecast data', async () => {
-    const coordinatesResponse = await weatherForecastService.get(
-      getPointsWeatherForecastPath({
-        latitude: 38.907192,
-        longitude: -77.036871,
-      }),
-    );
+    const weatherForecast = await getGeoCoordinatesWeatherForecast({
+      latitude: 38.907192,
+      longitude: -77.036871,
+    });
 
-    const { forecast } = coordinatesResponse.data.properties;
-
-    const forecastUrlResponse = await axios.get(forecast);
-
-    const { periods } = forecastUrlResponse.data.properties;
-
-    expect(periods.length).toBeGreaterThan(0);
+    expect(weatherForecast.length).toBeGreaterThan(0);
   });
 });
