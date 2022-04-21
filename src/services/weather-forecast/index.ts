@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GeoCoordinates } from '../../models/GeoCoordinates';
+import { WeatherForecast } from '../../models/WeatherForecast';
 
 const weatherForecastBaseURL = 'https://api.weather.gov';
 
@@ -12,26 +13,10 @@ export const getPointsWeatherForecastPath = ({
   longitude,
 }: GeoCoordinates) => `/points/${latitude},${longitude}`;
 
-type WeatherForecast = {
-  number: number;
-  name: string;
-  startTime: string;
-  endTime: string;
-  isDaytime: boolean;
-  temperature: number;
-  temperatureUnit: string;
-  temperatureTrend: null;
-  windSpeed: string;
-  windDirection: string;
-  icon: string;
-  shortForecast: string;
-  detailedForecast: string;
-}[];
-
 export const getGeoCoordinatesWeatherForecast = async ({
   latitude,
   longitude,
-}: GeoCoordinates): Promise<WeatherForecast> => {
+}: GeoCoordinates): Promise<WeatherForecast[]> => {
   const coordinatesResponse = await weatherForecastService.get(
     getPointsWeatherForecastPath({
       latitude,
