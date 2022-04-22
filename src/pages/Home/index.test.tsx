@@ -36,12 +36,6 @@ test('render search submit button', () => {
   expect(screen.getByRole('button')).toBe(searchSubmitButtonElement);
 });
 
-/* test('render single forecast item', () => {
-  renderComponent();
-  const forecastItemElement = screen.getByText(/Forecast Item/i);
-  expect(forecastItemElement).toBeInTheDocument();
-}); */
-
 test.skip('trigger search w/ input value on button click', () => {
   const mockAddressGeoCoordinates = jest.fn().mockResolvedValue({
     latitude: 50.0,

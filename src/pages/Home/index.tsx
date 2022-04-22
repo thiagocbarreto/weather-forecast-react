@@ -3,16 +3,12 @@ import { GeoCoordinates } from '../../models/GeoCoordinates';
 import { WeatherForecast } from '../../models/WeatherForecast';
 import { getAddressGeoCoordinates } from '../../services/geocoding';
 import { getGeoCoordinatesWeatherForecast } from '../../services/weather-forecast';
+import SearchBlock from './components/SearchBlock';
 import { dummyWeatherForecast } from './dummyData';
 
 import {
   PageTitle,
   PageContainer,
-  SearchBlock,
-  SearchForm,
-  SearchInput,
-  SearchButton,
-  SearchAddressExample,
   LoadingMessage,
   ErrorMessage,
   EmptyMessage,
@@ -74,19 +70,11 @@ function Home() {
       <header>
         <PageTitle>Weather Forecast App</PageTitle>
       </header>
-      <SearchBlock>
-        <SearchForm onSubmit={handleSearchSubmit}>
-          <SearchInput
-            type="text"
-            placeholder="Find out the forecast at..."
-            onChange={(e) => setSearchAddress(e.target.value)}
-          />
-          <SearchButton type="submit">Search!</SearchButton>
-        </SearchForm>
-        <SearchAddressExample>
-          Example of a valid address: 4600 Silver Hill Rd, Washington, DC
-        </SearchAddressExample>
-      </SearchBlock>
+
+      <SearchBlock
+        onSearchSubmit={handleSearchSubmit}
+        updateSearchAddress={(value) => setSearchAddress(value)}
+      />
 
       {isLoading && <LoadingMessage>Loading search...</LoadingMessage>}
 
