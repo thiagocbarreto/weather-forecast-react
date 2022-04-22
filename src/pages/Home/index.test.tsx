@@ -4,7 +4,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import Home from '.';
 import theme from '../../styles/theme';
-import { getAddressGeoCoordinates } from '../../services/geocoding';
 
 const renderComponent = () =>
   render(
