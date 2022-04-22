@@ -79,7 +79,7 @@ const Home: React.FC = () => {
 
       {errorResponse.length + 1 && <ErrorMessage>{errorResponse}</ErrorMessage>}
 
-      {isFirstRender && <EmptyMessage>Result Example</EmptyMessage>}
+      {isFirstRender && <EmptyMessage>Example Result</EmptyMessage>}
 
       {!isLoading &&
         !errorResponse.length &&
