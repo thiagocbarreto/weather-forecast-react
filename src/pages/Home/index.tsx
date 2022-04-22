@@ -4,6 +4,7 @@ import { WeatherForecast } from '../../models/WeatherForecast';
 import { getAddressGeoCoordinates } from '../../services/geocoding';
 import { getGeoCoordinatesWeatherForecast } from '../../services/weather-forecast';
 import SearchBlock from './components/SearchBlock';
+import WeatherForecastData from './components/WeatherForecastData/indext';
 import { dummyWeatherForecast } from './dummyData';
 
 import {
@@ -12,11 +13,9 @@ import {
   LoadingMessage,
   ErrorMessage,
   EmptyMessage,
-  WeatherForecastList,
-  WeatherForecastItem,
 } from './styles';
 
-function Home() {
+const Home: React.FC = () => {
   const [searchAddress, setSearchAddress] = useState('');
   const [errorResponse, setErrorResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -86,32 +85,12 @@ function Home() {
         !errorResponse.length &&
         weatherForecast &&
         (weatherForecast.length > 0 ? (
-          <WeatherForecastList>
-            {weatherForecast.map(
-              ({
-                number,
-                name,
-                temperature,
-                temperatureUnit,
-                shortForecast,
-              }) => (
-                <WeatherForecastItem key={number}>
-                  <div className="topForecastInfo">
-                    <p className="forecastDayName">{name}</p>
-                    <p className="forecastTemperature">
-                      {temperature}º{temperatureUnit}
-                    </p>
-                  </div>
-                  <p className="shortForecastDescription">{shortForecast}</p>
-                </WeatherForecastItem>
-              ),
-            )}
-          </WeatherForecastList>
+          <WeatherForecastData weatherForecast={weatherForecast} />
         ) : (
           <EmptyMessage>Forecast not found for the given address</EmptyMessage>
         ))}
     </PageContainer>
   );
-}
+};
 
 export default Home;
